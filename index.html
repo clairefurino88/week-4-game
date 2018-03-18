@@ -1,92 +1,195 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>simple crystal game</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Crystal Game</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <!-- Compiled and minified Materialize framework CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <!-- Text font from google -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
-  <style type="text/css">
-
-    .crystal-image {
-      width: 300px;
-      height: 300px;
-    }
-  </style>
 
 </head>
-<body>
 
-  <h1>Number to Guess: <span id="number-to-guess"></span></h1>
+<body class="#ff5252 red accent-2"> 
 
-  <!-- Note that this div is now empty. We will fill it dynamically -->
-  <div id="crystals">
-  </div>
+    <div class="row page-header #00e676 green accent-3 z-depth-2 valign-wrapper center-align">
 
-  <!-- JAVASCRIPT  -->
-  <!-- ========================================= -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <div class="col s12">  <!-- Bootstrap Framework for placing the header across the entire top of the screen -->
 
-  <script type="text/javascript">
+            <h1 class="black-text">The Crystal Game</h1>
 
-  var targetNumber = 53;
+        </div>
 
-  $("#number-to-guess").text(targetNumber);
+    </div>
 
-  var crystals = $("#crystals");
+    <div class="container">
 
-  var counter = 0;
+        <div class="row">
 
-  // Now for the hard part. Creating multiple crystals each with their own unique number value.
+            <div class="col s12 m12 l12"> <!-- this creates responsiveness for all screen sizes -->
 
-  // We begin by expanding our array to include four options.
-  var numberOptions = [10, 5, 3, 7];
+                <div class="card white">
 
-  // Next we create a for loop to create crystals for every numberOption.
-  for (var i = 0; i < numberOptions.length; i++) {
+                    <div class="card-content black-text text-darken-3">
 
-    // For each iteration, we will create an imageCrystal
-    var imageCrystal = $("<img>");
+                      <span class="card-title">How to play</span> 
 
-    // First each crystal will be given the class ".crystal-image".
-    // This will allow the CSS to take effect.
-    imageCrystal.addClass("crystal-image");
+                         <div>Click on one of the crystals to increase your score. Try to get your score to match the goal without going over it. Each crystal's value is different and will change every round.
+                         </div>
 
-    // Each imageCrystal will be given a src link to the crystal image
-    imageCrystal.attr("src", "http://cdn.playbuzz.com/cdn/35910209-2844-45c0-b099-f4d82878d54f/00261fda-4062-4096-81fd-8cf96b9034e8.jpg");
+                    </div>
 
-    // Each imageCrystal will be given a data attribute called data-crystalValue.
-    // This data attribute will be set equal to the array value.
-    imageCrystal.attr("data-crystalvalue", numberOptions[i]);
+                </div>
 
-    // Lastly, each crystal image (with all it classes and attributes) will get added to the page.
-    crystals.append(imageCrystal);
-  }
+            </div>
 
-  // This time, our click event applies to every single crystal on the page. Not just one.
-  crystals.on("click", ".crystal-image", function() {
+        </div>
 
-    // Determining the crystal's value requires us to extract the value from the data attribute.
-    // Using the $(this) keyword specifies that we should be extracting the crystal value of the clicked crystal.
-    // Using the .attr("data-crystalvalue") allows us to grab the value out of the "data-crystalvalue" attribute.
-    // Since attributes on HTML elements are strings, we must convert it to an integer before adding to the counter
+        <div class="row">
 
-    var crystalValue = ($(this).attr("data-crystalvalue"));
-    crystalValue = parseInt(crystalValue);
-    // We then add the crystalValue to the user's "counter" which is a global variable.
-    // Every click, from every crystal adds to the global counter.
-    counter += crystalValue;
+            <div class="col s12 m12 l12"> <!-- this creates responsiveness for all screen sizes -->
 
-    // All of the same game win-lose logic applies. So the rest remains unchanged.
-    alert("New score: " + counter);
+                <div class="card white">
 
-    if (counter === targetNumber) {
-      alert("You win!");
-    }
+                    <div class="card-content black-text text-darken-3">
+  
+                      <span class="card-title">Crystals</span> 
 
-    else if (counter >= targetNumber) {
-      alert("You lose!!");
-    }
+                      <div class="crystals center-align">
+                      </div>
+                    
+                    </div>
 
-  });
+                </div>
 
-  </script>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col s12 m6 l6"> <!-- this creates responsiveness for all screen sizes -->
+
+                <div class="card white">
+
+                    <div class="card-content black-text text-darken-3">
+
+                      <span class="card-title">Score</span> 
+
+                      <h2><span class="score">0
+
+                      </span></h2> 
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col s12 m6 l6"> <!-- this creates responsiveness for all screen sizes -->
+
+                <div class="card white">
+
+                    <div class="card-content black-text text-darken-3">
+
+                      <span class="card-title">Goal</span> 
+
+                      <h2><span class="goal">000
+
+                      </span></h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col s12 m6 l6"> <!-- this creates responsiveness for all screen sizes -->
+
+                <div class="card white">
+
+                    <div class="card-content black-text text-darken-3">
+
+                      <span class="card-title">Wins</span> 
+
+                      <h2><span class="wins">0
+
+                      </span></h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col s12 m6 l6"> <!-- this creates responsiveness for all screen sizes -->
+
+                <div class="card white">
+
+                    <div class="card-content black-text text-darken-3">
+
+                      <span class="card-title">Losses</span> 
+
+                      <h2><span class="losses">0
+
+                      </span></h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer class="page-footer #00e676 green accent-3">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col l6 s12">
+
+                    <h5 class="white-text">&nbsp;</h5>
+
+                </div>
+
+                <div class="col l4 offset-l2 s12">
+                    
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer-copyright #00e676 green accent-3">
+
+            <div class="container">
+
+               <b>© 2018 Claire Furino</b> 
+                
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
+    <!-- Compiled and minified Materialize framework JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    
 </body>
+
 </html>
